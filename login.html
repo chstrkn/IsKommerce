@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log in to IsKommerce / IsKommerce</title>
+    <link rel="stylesheet" href="/css/login.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="header">
+      <img id="logo" src="/images/LOGO.png" alt="IsKommerce" />
+      <h1><a href="index.html">IsKommerce</a></h1>
+      <form action="products.html" method="get">
+        <input type="text" name="search" placeholder="Search" />
+        <input type="submit" value="Search" />
+      </form>
+      <nav>
+        <a href="account.html">
+          <img src="/images/account_circle_white_48dp.svg" alt="Account" />
+        </a>
+        <a href="cart.html">
+          <img src="/images/shopping_bag_white_48dp.svg" alt="Cart" />
+        </a>
+      </nav>
+    </div>
+    <div id="container">
+      <div id="login">
+        <h2>Log in to IsKommerce</h2>
+        <form action="account.html" method="post">
+          <input type="text" name="username" placeholder="Username" />
+          <input type="password" name="password" placeholder="Password" />
+          <input type="submit" value="Log in" />
+        </form>
+        <p>Don't have an account? <a href="register.html">Register</a></p>
+      </div>
+    </div>
+    <div id="footer">Made with love and PHP. IsKommerce © 2023.</div>
+  </body>
+</html>
