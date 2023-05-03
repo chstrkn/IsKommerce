@@ -13,20 +13,20 @@
     <header>
       <img id="logo" src="images/LOGO.png" alt="IsKommerce" />
       <h1><a href="index.html">IsKommerce</a></h1>
-    </header>
-    <div id="container">
-      <form id="register" action="login.html" method="post">
-        <h2>Sign up to IsKommerce</h2>
-        <input type="text" name="username" placeholder="Username" required />
-        <br />
-        <input type="password" name="password" placeholder="Password" required />
-        <br />
-        <input type="password" name="password" placeholder="Confirm password" required />
-        <br />
-        <input type="submit" value="Sign up" />
-        <p>Already have an account? <a href="login.html">Log in</a></p>
+      <form id="search-bar" action="products.html" method="get">
+        <input type="text" name="search" placeholder="Search" />
+        <input type="submit" value="Search" />
       </form>
-    </div>
+      <nav>
+        <a href="account.html">
+          <img src="images/account_circle_white_48dp.svg" alt="Account" />
+        </a>
+        <a href="cart.html">
+          <img src="images/shopping_bag_white_48dp.svg" alt="Cart" />
+        </a>
+      </nav>
+    </header>
+    <div id="product"></div>
     <footer>Made with love. IsKommerce © 2023.</footer>
   </body>
 </html>

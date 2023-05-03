@@ -1,0 +1,358 @@
+:root {
+  --maroon: #76090c;
+  --green: #0a4424;
+  --yellow: #f5ab29;
+}
+body {
+  background-color: #f0f0f0;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+header {
+  align-items: center;
+  background-color: var(--maroon);
+  display: flex;
+  height: 100px;
+  justify-content: center;
+}
+header #logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+header h1 {
+  padding: 0 10px;
+}
+header h1 a {
+  color: #fff;
+  text-decoration: none;
+}
+header #search-bar {
+  min-width: 200px;
+  width: 800px;
+}
+header #search-bar input[type="text"] {
+  width: calc(100% - 70px);
+}
+header #search-bar input[type="submit"] {
+  float: right;
+}
+header nav {
+  display: flex;
+}
+header nav img {
+  width: 42px;
+  height: 42px;
+}
+header nav img[alt="Account"] {
+  padding-left: 10px;
+}
+header nav a {
+  text-decoration: none;
+}
+#container {
+  max-width: 400px;
+  margin: 220px auto;
+  background-color: var(--green);
+}
+#container #register {
+  height: 410px;
+  padding: 0 30px;
+  max-width: 340px;
+}
+#container #login {
+  height: 341px;
+  padding: 0 30px;
+  max-width: 340px;
+}
+#container h2 {
+  margin: 0;
+  padding: 30px 0;
+}
+#container input[type="text"],
+#container input[type="password"] {
+  width: 316px;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+#container input[type="submit"] {
+  width: 340px;
+  padding: 10px;
+  margin-bottom: 30px;
+  background-color: var(--yellow);
+  border: none;
+  cursor: pointer;
+}
+#container p {
+  text-align: center;
+  margin: 0 0 30px;
+}
+#container p a {
+  color: var(--yellow);
+  text-decoration: none;
+}
+#featured {
+  max-width: 1200px;
+  max-height: 410px;
+  margin: 20px auto;
+}
+#featured img {
+  width: 100%;
+  height: 410px;
+  object-fit: cover;
+  object-position: 0 25%;
+}
+#categories {
+  margin: 0 auto;
+  max-width: 1200px;
+  background-color: var(--green);
+}
+#categories h2 {
+  margin: 0;
+  padding: 10px;
+}
+#categories table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+#categories table td {
+  padding: 5px;
+  text-align: center;
+  border: 2px solid #fff;
+}
+#categories table td img {
+  width: 100%;
+  object-fit: cover;
+  object-position: 0 25%;
+}
+#categories table td a {
+  text-decoration: none;
+  color: #fff;
+}
+#products {
+  margin: 20px auto;
+  max-width: 1200px;
+  background-color: var(--yellow);
+  color: #000;
+}
+#products h2 {
+  margin: 0;
+  padding: 10px;
+}
+#products table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+#products table td {
+  padding: 10px;
+  border: 5px solid #fff;
+}
+#products table td img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: 50% 25%;
+}
+#products table td a {
+  color: #000;
+  line-height: normal;
+  text-decoration: none;
+}
+#product {
+  min-height: 600px;
+  max-width: 1200px;
+  margin: 90px auto;
+  background-color: #0a4424;
+}
+/* TODO: style product.html */
+
+#account {
+  max-width: 600px;
+  margin: 40px auto;
+  background-color: var(--green);
+}
+#account-form {
+  padding: 0 30px;
+  max-width: 540px;
+}
+#account-form h2 {
+  margin: 0;
+  padding: 30px 0;
+}
+#account-form label {
+  display: inline-block;
+  width: 151px;
+}
+#account-form label[for="gender"] {
+  display: inline;
+  width: 151px;
+}
+#account-form input {
+  padding: 10px;
+  margin-bottom: 30px;
+}
+#account-form input[type="text"],
+#account-form input[type="password"],
+#account-form input[type="email"] {
+  width: 361px;
+}
+#account-form #submit {
+  margin-left: 151px;
+}
+#account-form input[type="button"],
+#account-form input[type="submit"] {
+  margin: 0 0 30 px 10px;
+  background-color: var(--yellow);
+  border: none;
+  cursor: pointer;
+}
+#cart {
+  min-height: 740px;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+#cart table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background-color: var(--green);
+}
+#cart td button img {
+  width: 20px;
+  height: 20px;
+}
+#cart td {
+  padding: 20px;
+  border-collapse: collapse;
+}
+#cart .cart-selector {
+  border: none;
+  width: 20px;
+}
+#cart .cart-product {
+  border: none;
+  width: 750px;
+}
+#cart .cart-product img {
+  float: left;
+  width: 100px;
+  height: 100px;
+}
+#cart .cart-product p {
+  padding-top: 30px;
+  padding-left: 120px;
+}
+#cart .cart-price,
+#cart .cart-quantity,
+#cart .cart-subtotal {
+  border: none;
+}
+#cart .cart-checkout {
+  border: none;
+  padding-left: 890px;
+}
+#cart .cart-checkout button {
+  margin-left: 50px;
+}
+#checkout {
+  min-height: 740px;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+#checkout table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background-color: var(--green);
+}
+#checkout #checkout-address {
+  padding: 20px;
+  border-collapse: collapse;
+}
+#checkout #checkout-address input {
+  margin-top: 10px;
+  width: 200px;
+}
+#checkout td button img {
+  width: 20px;
+  height: 20px;
+}
+#checkout td {
+  padding: 20px;
+  border-collapse: collapse;
+}
+#checkout .checkout-selector {
+  border: none;
+  width: 40px;
+}
+#checkout .checkout-product {
+  border: none;
+  width: 750px;
+}
+#checkout .checkout-product img {
+  float: left;
+  width: 100px;
+  height: 100px;
+}
+#checkout .checkout-product p {
+  padding-top: 30px;
+  padding-left: 120px;
+}
+#checkout .checkout-price,
+#checkout .checkout-quantity,
+#checkout .checkout-subtotal {
+  border: none;
+}
+#checkout .checkout-payment-method {
+  border: none;
+  width: 400px;
+}
+#checkout .checkout-payment-method label {
+  margin-right: 20px;
+}
+#checkout .checkout-checkout {
+  border: none;
+  padding-left: 930px;
+}
+#checkout .checkout-checkout button {
+  margin-left: 50px;
+}
+#successful-transaction {
+  min-height: 600px;
+  max-width: 420px;
+  margin: 90px auto;
+  background-color: #0a4424;
+}
+/* align image to center */
+#successful-transaction img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+#successful-transaction #message {
+  text-align: center;
+}
+#successful-transaction {
+  padding: 20px;
+  color: var(--yellow);
+}
+#successful-transaction button {
+  padding: 10px 50px;
+  margin: 0 34% 10px;
+  background-color: var(--yellow);
+  border: none;
+  cursor: pointer;
+}
+footer {
+  align-items: center;
+  background-color: var(--maroon);
+  display: flex;
+  height: 100px;
+  justify-content: center;
+}
