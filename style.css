@@ -167,10 +167,43 @@ header nav a {
   min-height: 600px;
   max-width: 1200px;
   margin: 90px auto;
-  background-color: #0a4424;
+  background-color: var(--green);
 }
-/* TODO: style product.html */
-
+#product #product-image img {
+  width: 450px;
+  height: 450px;
+  object-fit: cover;
+  object-position: 50% 25%;
+  float: left;
+  margin: 20px;
+}
+#product #product-info {
+  width: 690px;
+  height: 450px;
+  float: left;
+  margin: 20px 20px 20px 0;
+  line-height: 50px;
+}
+#product #product-info #product-name {
+  font-size: 24px;
+  font-weight: bold;
+}
+#product #product-info #product-price {
+  font-size: 20px;
+  font-weight: bold;
+}
+#product #product-info label[for="color"],
+#product #product-info label[for="size"],
+#product #product-info label[for="quantity"] {
+  display: inline-block;
+  width: 70px;
+}
+#product #product-thumbnails img {
+  width: 95px;
+  height: 95px;
+  margin: 0 0 15px 20px;
+  cursor: pointer;
+}
 #account {
   max-width: 600px;
   margin: 40px auto;
