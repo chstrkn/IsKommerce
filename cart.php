@@ -1,5 +1,12 @@
 <?php
 session_start();
+$conn = mysqli_connect("localhost", "root", "", "iskommerce");
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+if (!isset($_SESSION['username'])) {
+  header("Location: register.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,135 +25,109 @@ session_start();
 <body>
   <header>
     <img id="logo" src="images/LOGO.png" alt="IsKommerce" />
-    <h1><a href="index.html">IsKommerce</a></h1>
-    <form id="search-bar" action="products.html" method="get">
+    <h1><a href="index.php">IsKommerce</a></h1>
+    <form id="search-bar" action="products.php" method="get">
       <input type="text" name="search" placeholder="Search" />
       <input type="submit" value="Search" />
     </form>
     <nav>
-      <a href="account.html">
+      <a href="account.php">
         <img src="images/account_circle_white_48dp.svg" alt="Account" />
       </a>
-      <a href="cart.html">
+      <a href="cart.php">
         <img src="images/shopping_bag_white_48dp.svg" alt="Cart" />
       </a>
     </nav>
   </header>
   <div id="cart">
-    <table>
-      <tr>
-        <td class="cart-selector">
-          <button type="button">
-            <img src="images/check_box_outline_blank_white_48dp.svg" alt="Select
-              All" />
-          </button>
-        </td>
-        <td class="cart-product">Product</td>
-        <td class="cart-price">Price</td>
-        <td class="cart-quantity">Quantity</td>
-        <td class="cart-subtotal">Subtotal</td>
-      </tr>
-    </table>
-    <br />
-    <table>
-      <tr>
-        <td class="cart-selector">
-          <button type="button">
-            <img src="images/check_box_outline_blank_white_48dp.svg" alt="Select" />
-          </button>
-        </td>
-        <td class="cart-product">
-          <img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product" />
-          <p>UPBEAT-University of the Philippines-UP Baguio Shirt 2016</p>
-        </td>
-        <td class="cart-price">₱0.00</td>
-        <td class="cart-quantity">
-          <input type="number" name="quantity" min="1" max="99" value="1" />
-        </td>
-        <td class="cart-subtotal">₱0.00</td>
-      </tr>
-      <tr>
-        <td class="cart-selector">
-          <button type="button">
-            <img src="images/check_box_outline_blank_white_48dp.svg" alt="Select" />
-          </button>
-        </td>
-        <td class="cart-product">
-          <img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product" />
-          <p>UPBEAT-University of the Philippines-UP Baguio Shirt 2016</p>
-        </td>
-        <td class="cart-price">₱0.00</td>
-        <td class="cart-quantity">
-          <input type="number" name="quantity" min="1" max="99" value="1" />
-        </td>
-        <td class="cart-subtotal">₱0.00</td>
-      </tr>
-      <tr>
-        <td class="cart-selector">
-          <button type="button">
-            <img src="images/check_box_outline_blank_white_48dp.svg" alt="Select" />
-          </button>
-        </td>
-        <td class="cart-product">
-          <img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product" />
-          <p>UPBEAT-University of the Philippines-UP Baguio Shirt 2016</p>
-        </td>
-        <td class="cart-price">₱0.00</td>
-        <td class="cart-quantity">
-          <input type="number" name="quantity" min="1" max="99" value="1" />
-        </td>
-        <td class="cart-subtotal">₱0.00</td>
-      </tr>
-      <tr>
-        <td class="cart-selector">
-          <button type="button">
-            <img src="images/check_box_outline_blank_white_48dp.svg" alt="Select" />
-          </button>
-        </td>
-        <td class="cart-product">
-          <img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product" />
-          <p>UPBEAT-University of the Philippines-UP Baguio Shirt 2016</p>
-        </td>
-        <td class="cart-price">₱0.00</td>
-        <td class="cart-quantity">
-          <input type="number" name="quantity" min="1" max="99" value="1" />
-        </td>
-        <td class="cart-subtotal">₱0.00</td>
-      </tr>
-      <tr>
-        <td class="cart-selector">
-          <button type="button">
-            <img src="images/check_box_outline_blank_white_48dp.svg" alt="Select" />
-          </button>
-        </td>
-        <td class="cart-product">
-          <img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product" />
-          <p>UPBEAT-University of the Philippines-UP Baguio Shirt 2016</p>
-        </td>
-        <td class="cart-price">₱0.00</td>
-        <td class="cart-quantity">
-          <input type="number" name="quantity" min="1" max="99" value="1" />
-        </td>
-        <td class="cart-subtotal">₱0.00</td>
-      </tr>
-    </table>
-    <br />
-    <table>
-      <tr>
-        <td class="cart-selector">
-          <button type="button">
-            <img src="images/check_box_outline_blank_white_48dp.svg" alt="Select
-                All" />
-          </button>
-        </td>
-        <td class="cart-checkout" colspan="4">
-          Total: <span id="cart-checkout-total-price">₱0.00</span>
-          <button type="button" onclick="location.href='checkout.html'">Checkout</button>
-        </td>
-      </tr>
-    </table>
+    <form action="checkout.php" method="post">
+      <table>
+        <tr>
+          <td class="cart-selector">
+          </td>
+          <td class="cart-product">Product</td>
+          <td class="cart-price">Price</td>
+          <td class="cart-quantity">Quantity</td>
+          <td class="cart-subtotal">Subtotal</td>
+        </tr>
+      </table>
+      <br />
+      <table>
+        <tr>
+          <td class="cart-selector">
+            <input type="checkbox" name="" id="">
+          </td>
+          <td class="cart-product">
+            <img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product" />
+            <p>UPBEAT-University of the Philippines-UP Baguio Shirt 2016</p>
+          </td>
+          <td class="cart-price">₱0.00</td>
+          <td class="cart-quantity">1</td>
+          <td class="cart-subtotal">₱0.00</td>
+        </tr>
+        <tr>
+          <td class="cart-selector">
+            <input type="checkbox" name="" id="">
+          </td>
+          <td class="cart-product">
+            <img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product" />
+            <p>UPBEAT-University of the Philippines-UP Baguio Shirt 2016</p>
+          </td>
+          <td class="cart-price">₱0.00</td>
+          <td class="cart-quantity">1</td>
+          <td class="cart-subtotal">₱0.00</td>
+        </tr>
+        <tr>
+          <td class="cart-selector">
+            <input type="checkbox" name="" id="">
+          </td>
+          <td class="cart-product">
+            <img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product" />
+            <p>UPBEAT-University of the Philippines-UP Baguio Shirt 2016</p>
+          </td>
+          <td class="cart-price">₱0.00</td>
+          <td class="cart-quantity">1</td>
+          <td class="cart-subtotal">₱0.00</td>
+        </tr>
+        <tr>
+          <td class="cart-selector">
+            <input type="checkbox" name="" id="">
+          </td>
+          <td class="cart-product">
+            <img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product" />
+            <p>UPBEAT-University of the Philippines-UP Baguio Shirt 2016</p>
+          </td>
+          <td class="cart-price">₱0.00</td>
+          <td class="cart-quantity">1</td>
+          <td class="cart-subtotal">₱0.00</td>
+        </tr>
+        <tr>
+          <td class="cart-selector">
+            <input type="checkbox" name="" id="">
+          </td>
+          <td class="cart-product">
+            <img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product" />
+            <p>UPBEAT-University of the Philippines-UP Baguio Shirt 2016</p>
+          </td>
+          <td class="cart-price">₱0.00</td>
+          <td class="cart-quantity">1</td>
+          <td class="cart-subtotal">₱0.00</td>
+        </tr>
+      </table>
+      <br />
+      <table>
+        <tr>
+          <td class="cart-selector">
+          </td>
+          <td class="cart-checkout" colspan="4">
+            Total: <span id="cart-checkout-total-price">₱0.00</span>
+            <button type="submit" name="checkout">Checkout</button>
+          </td>
+        </tr>
+      </table>
+    </form>
   </div>
-  <footer>Made with love. IsKommerce © 2023.</footer>
+  <footer>Made with love and PHP. IsKommerce © 2023.</footer>
 </body>
 
 </html>
