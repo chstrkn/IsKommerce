@@ -64,6 +64,8 @@ if (!isset($_SESSION['username'])) {
         <?php
         if (isset($_POST['cart-item'])) {
           $cart_item = $_POST['cart-item'];
+          // pass cart_item to checkout.php
+          echo "<input type='text' name='cart-item' value='" . implode(",", $cart_item) . "' hidden>";
           $sql = "SELECT * FROM cart_item INNER JOIN product ON cart_item.product_id = product.product_id WHERE cart_item_id IN (" . implode(",", $cart_item) . ")";
           $result = mysqli_query($conn, $sql);
           $total = 0;
@@ -75,7 +77,7 @@ if (!isset($_SESSION['username'])) {
             echo "</td>";
             echo "<td class='checkout-price'>" . $row['price'] . "</td>";
             echo "<td class='checkout-quantity'>" . $row['quantity'] . "</td>";
-            echo "<td class='checkout-subtotal'>" . $row['total'] . "</td>";
+            echo "<td class='checkout-subtotal'>₱" . $row['total'] . "</td>";
             echo "</tr>";
             $total += $row['total'];
           }

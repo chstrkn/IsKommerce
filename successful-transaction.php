@@ -36,13 +36,21 @@ if (!isset($_SESSION['username'])) {
       $address = $_POST['address'];
       $payment_method = $_POST['payment-method'];
       $total = $_POST['total'];
-      $sql = "INSERT INTO order_details (user_id, delivery_address, payment_method, total) VALUES ((SELECT user_id FROM user WHERE username = '" . $_SESSION['username'] . "'), '$address', '$payment_method', $total)";
+      $sql = "SELECT user_id FROM user WHERE username = '" . $_SESSION['username'] . "'";
+      $user_id = mysqli_query($conn, $sql);
+      $user_id = mysqli_fetch_assoc($user_id)['user_id'];
+      $sql = "INSERT INTO order_details (user_id, total, payment_method, delivery_address) VALUES ($user_id, $total, '$payment_method', '$address')";
       mysqli_query($conn, $sql);
-      $sql = "SELECT order_id FROM order_details WHERE user_id = (SELECT user_id FROM user WHERE username = '" . $_SESSION['username'] . "') ORDER BY order_id DESC LIMIT 1";
-      $order_id = mysqli_query($conn, $sql);
-      $order_id = mysqli_fetch_assoc($order_id)['order_id'];
-      $sql = "DELETE FROM cart_item WHERE user_id = (SELECT user_id FROM user WHERE username = '" . $_SESSION['username'] . "')";
-      mysqli_query($conn, $sql);
+      $order_id = mysqli_insert_id($conn);
+      if (isset($_POST['cart-item'])) {
+        $selectedItems = $_POST['cart-item'];
+        $sql = "SELECT * FROM cart_item WHERE cart_item_id IN ($selectedItems)";
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_assoc($result)) {
+          $sql = "DELETE FROM cart_item WHERE cart_item_id = " . $row['cart_item_id'];
+          mysqli_query($conn, $sql);
+        }
+      }
     }
     ?>
     <p>Order ID: <?php echo $order_id; ?></p>
