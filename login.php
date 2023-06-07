@@ -17,6 +17,7 @@ if (isset($_POST['login'])) {
     $_SESSION['username'] = $username;
     $_SESSION['name'] = $row['name'];
     $_SESSION['email'] = $row['email'];
+    $_SESSION['birthday'] = $row['birthday'];
     header("Location: index.php");
   } else {
     echo "<script>alert('Invalid username or password.')</script>";

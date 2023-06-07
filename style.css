@@ -206,7 +206,7 @@ header nav a {
 }
 #account {
   max-width: 600px;
-  margin: 40px auto;
+  margin: 170px auto;
   background-color: var(--green);
 }
 #account-form {
@@ -224,6 +224,10 @@ header nav a {
 #account-form label[for="gender"] {
   display: inline;
   width: 151px;
+}
+#account-form span#username {
+  margin-bottom: 10px;
+  padding-bottom: 16px;
 }
 #account-form input {
   padding: 10px;
@@ -243,6 +247,10 @@ header nav a {
   background-color: var(--yellow);
   border: none;
   cursor: pointer;
+}
+
+#account-form input[type="button"][value="Log Out"] {
+  margin-left: 210px;
 }
 #cart {
   min-height: 740px;

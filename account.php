@@ -11,10 +11,12 @@ if (isset($_POST['account'])) {
   $name = $_POST['name'];
   $email = $_POST['email'];
   $username = $_SESSION['username'];
-  $sql = "UPDATE user SET name='$name', email='$email' WHERE username='$username'";
+  $birthday = $_POST['birthday'];
+  $sql = "UPDATE user SET name='$name', email='$email', birthday='$birthday' WHERE username='$username'";
   if (mysqli_query($conn, $sql)) {
     $_SESSION['name'] = $name;
     $_SESSION['email'] = $email;
+    $_SESSION['birthday'] = $birthday;
     echo "<script>alert('Account updated successfully.')</script>";
   } else {
     echo "<script>alert('Error: " . mysqli_error($conn) . "')</script>";
@@ -83,6 +85,9 @@ if (isset($_POST['account'])) {
       <br />
       <label for="email">Email:</label>
       <input type="email" name="email" placeholder="Email" value="<?php echo $_SESSION['email']; ?>" />
+      <br />
+      <label for="birthday">Birthday:</label>
+      <input type="date" id="birthday" name="birthday" value="<?php echo $_SESSION['birthday']; ?>" />
       <br />
       <div id="submit">
         <input type="button" value="Back" onclick="history.back()" />
