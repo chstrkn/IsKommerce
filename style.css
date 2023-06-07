@@ -301,7 +301,7 @@ header nav a {
   border: none;
   padding-left: 890px;
 }
-#cart .cart-checkout button {
+#cart .cart-checkout input {
   margin-left: 50px;
 }
 #checkout {

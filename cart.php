@@ -53,66 +53,26 @@ if (!isset($_SESSION['username'])) {
       </table>
       <br />
       <table>
-        <tr>
-          <td class="cart-selector">
-            <input type="checkbox" name="" id="">
-          </td>
-          <td class="cart-product">
-            <img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product" />
-            <p>UPBEAT-University of the Philippines-UP Baguio Shirt 2016</p>
-          </td>
-          <td class="cart-price">₱0.00</td>
-          <td class="cart-quantity">1</td>
-          <td class="cart-subtotal">₱0.00</td>
-        </tr>
-        <tr>
-          <td class="cart-selector">
-            <input type="checkbox" name="" id="">
-          </td>
-          <td class="cart-product">
-            <img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product" />
-            <p>UPBEAT-University of the Philippines-UP Baguio Shirt 2016</p>
-          </td>
-          <td class="cart-price">₱0.00</td>
-          <td class="cart-quantity">1</td>
-          <td class="cart-subtotal">₱0.00</td>
-        </tr>
-        <tr>
-          <td class="cart-selector">
-            <input type="checkbox" name="" id="">
-          </td>
-          <td class="cart-product">
-            <img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product" />
-            <p>UPBEAT-University of the Philippines-UP Baguio Shirt 2016</p>
-          </td>
-          <td class="cart-price">₱0.00</td>
-          <td class="cart-quantity">1</td>
-          <td class="cart-subtotal">₱0.00</td>
-        </tr>
-        <tr>
-          <td class="cart-selector">
-            <input type="checkbox" name="" id="">
-          </td>
-          <td class="cart-product">
-            <img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product" />
-            <p>UPBEAT-University of the Philippines-UP Baguio Shirt 2016</p>
-          </td>
-          <td class="cart-price">₱0.00</td>
-          <td class="cart-quantity">1</td>
-          <td class="cart-subtotal">₱0.00</td>
-        </tr>
-        <tr>
-          <td class="cart-selector">
-            <input type="checkbox" name="" id="">
-          </td>
-          <td class="cart-product">
-            <img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product" />
-            <p>UPBEAT-University of the Philippines-UP Baguio Shirt 2016</p>
-          </td>
-          <td class="cart-price">₱0.00</td>
-          <td class="cart-quantity">1</td>
-          <td class="cart-subtotal">₱0.00</td>
-        </tr>
+        <?php
+        $sql = "SELECT * FROM cart_item INNER JOIN product ON cart_item.product_id = product.product_id WHERE user_id = (SELECT user_id FROM user WHERE username = '" . $_SESSION['username'] . "')";
+        $result = mysqli_query($conn, $sql);
+        $total = 0;
+        while ($row = mysqli_fetch_assoc($result)) {
+          $total += $row['total'];
+          echo "<tr>";
+          echo "<td class='cart-selector'>";
+          echo "<input type='checkbox' name='' id=''>";
+          echo "</td>";
+          echo "<td class='cart-product'>";
+          echo "<img src='" . $row['image'] . "' alt='Product' />";
+          echo "<p>" . $row['name'] . "</p>";
+          echo "</td>";
+          echo "<td class='cart-price'>₱" . $row['price'] . "</td>";
+          echo "<td class='cart-quantity'>" . $row['quantity'] . "</td>";
+          echo "<td class='cart-subtotal'>₱" . $row['total'] . "</td>";
+          echo "</tr>";
+        }
+        ?>
       </table>
       <br />
       <table>
@@ -120,8 +80,8 @@ if (!isset($_SESSION['username'])) {
           <td class="cart-selector">
           </td>
           <td class="cart-checkout" colspan="4">
-            Total: <span id="cart-checkout-total-price">₱0.00</span>
-            <button type="submit" name="checkout">Checkout</button>
+            Total: <span id="cart-checkout-total-price">₱<?php echo $total; ?> </span>
+            <input type="submit" name="checkout" value="Checkout"></input>
           </td>
         </tr>
       </table>
