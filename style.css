@@ -136,11 +136,11 @@ header nav a {
 #products {
   margin: 20px auto;
   max-width: 1200px;
-  background-color: var(--yellow);
   color: #000;
 }
 #products h2 {
   margin: 0;
+  background-color: var(--yellow);
   padding: 10px;
 }
 #products table {
@@ -150,6 +150,7 @@ header nav a {
 }
 #products table td {
   padding: 10px;
+  background-color: var(--yellow);
   border: 5px solid #fff;
 }
 #products table td img {
@@ -164,9 +165,9 @@ header nav a {
   text-decoration: none;
 }
 #product {
-  min-height: 600px;
+  min-height: 490px;
   max-width: 1200px;
-  margin: 90px auto;
+  margin: 140px auto;
   background-color: var(--green);
 }
 #product #product-image img {
@@ -187,6 +188,9 @@ header nav a {
 #product #product-info #product-name {
   font-size: 24px;
   font-weight: bold;
+}
+#product #product-info #product-description {
+  line-height: 1.5;
 }
 #product #product-info #product-price {
   font-size: 20px;

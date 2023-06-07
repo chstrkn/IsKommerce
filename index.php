@@ -7,6 +7,9 @@ if (!$conn) {
 if (!isset($_SESSION['username'])) {
   header("Location: register.php");
 }
+$sqlFeatured = "SELECT * FROM product WHERE product_id=6";
+$resultFeatured = mysqli_query($conn, $sqlFeatured);
+$rowFeatured = mysqli_fetch_assoc($resultFeatured);
 ?>
 
 <!DOCTYPE html>
@@ -40,149 +43,58 @@ if (!isset($_SESSION['username'])) {
     </nav>
   </header>
   <div id="featured">
-    <a id="featured-image" href="product.php">
-      <img src="images/UPBEAT-University of the Philippines-UP shirt 2022 BLACK.jpg" alt="Featured Product" />
+    <a id="featured-image" href="product.php?product_id=<?php echo $rowFeatured['product_id']; ?>">
+      <img src="<?php echo $rowFeatured['image']; ?>" alt="Featured Product" />
     </a>
   </div>
   <div id="categories">
     <h2>Categories</h2>
     <table>
-      <tr>
-        <td>
-          <a href="products.php">
-            <img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="All Products" />
-            <b>All Products</b>
-          </a>
-        </td>
-        <td>
-          <a href="products.php"><img src="images/UPBEAT-University of the Philippines-UP Iloilo Shirt 2016.jpg" alt="T-Shirts" />
-            <b>T-Shirts</b>
-          </a>
-        </td>
-        <td>
-          <a href="products.php"><img src="images/UPBEAT-University of the Philippines-UP Open University Shirt.jpg" alt="Hoodies" />
-            <b>Hoodies</b>
-          </a>
-        </td>
-        <td>
-          <a href="products.php"><img src="images/UPBEAT-University of the Philippines-UP shirt 2021 BLACK.jpg" alt="Jackets" />
-            <b>Jackets</b>
-          </a>
-        </td>
-        <td>
-          <a href="products.php"><img src="images/UPBEAT-University of the Philippines-UP shirt 2022 BLACK.jpg" alt="Lanyards" />
-            <b>Lanyards</b>
-          </a>
-        </td>
-        <td>
-          <a href="products.php"><img src="images/UPBEAT-University of the Philippines-UP Visayas Shirt 2017.jpg" alt="Cap" />
-            <b>Cap</b>
-          </a>
-        </td>
-        <td>
-          <a href="products.php"><img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Sablay" />
-            <b>Sablay</b>
-          </a>
-        </td>
-        <td>
-          <a href="products.php"><img src="images/UPBEAT-University of the Philippines-UP Iloilo Shirt 2016.jpg" alt="Kids" />
-            <b>Kids</b>
-          </a>
-        </td>
-      </tr>
+      <td>
+        <a href="products.php">
+          <img src="<?php echo $rowFeatured['image']; ?>" alt="All Products" />
+          <b>All Products</b>
+        </a>
+      </td>
+      <?php
+      $sql = "SELECT * FROM product_category INNER JOIN product ON product_category.category_id = product.category_id GROUP BY product_category.category_id";
+      $result = mysqli_query($conn, $sql);
+      while ($row = mysqli_fetch_assoc($result)) {
+        echo "<td>";
+        echo "<a href='products.php?category_id=" . $row['category_id'] . "'>";
+        echo "<img src='" . $row['image'] . "' />";
+        echo "<b>" . $row['category_name'] . "</b>";
+        echo "</a>";
+        echo "</td>";
+      }
+      ?>
     </table>
   </div>
   <div id="products">
     <h2>Products</h2>
     <table>
-      <tr>
-        <td>
-          <a href="product.php"><img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product 1" />
-            UPBEAT-University of the Philippines-UP Baguio Shirt 2016
-            <br />
-            <b>₱499.00</b>
-          </a>
-        </td>
-        <td>
-          <a href="product.php"><img src="images/UPBEAT-University of the Philippines-UP Iloilo Shirt 2016.jpg" alt="Product 2" />
-            UPBEAT-University of the Philippines-UP Iloilo Shirt 2016
-            <br />
-            <b>₱499.00</b>
-          </a>
-        </td>
-        <td>
-          <a href="product.php"><img src="images/UPBEAT-University of the Philippines-UP Open University Shirt.jpg" alt="Product 3" />
-            UPBEAT-University of the Philippines-UP Open University Shirt
-            <br />
-            <b>₱499.00</b>
-          </a>
-        </td>
-        <td>
-          <a href="product.php"><img src="images/UPBEAT-University of the Philippines-UP shirt 2021 BLACK.jpg" alt="Product 4" />
-            UPBEAT-University of the Philippines-UP shirt 2021 BLACK
-            <br />
-            <b>₱499.00</b>
-          </a>
-        </td>
-        <td>
-          <a href="product.php"><img src="images/UPBEAT-University of the Philippines-UP shirt 2022 BLACK.jpg" alt="Product 5" />
-            UPBEAT-University of the Philippines-UP shirt 2022 BLACK
-            <br />
-            <b>₱499.00</b>
-          </a>
-        </td>
-        <td>
-          <a href="product.php"><img src="images/UPBEAT-University of the Philippines-UP Visayas Shirt 2017.jpg" alt="Product 6" />
-            UPBEAT-University of the Philippines-UP Visayas Shirt 2017
-            <br />
-            <b>₱499.00</b>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="product.php"><img src="images/UPBEAT-University of the Philippines-UP Baguio Shirt 2016.jpg" alt="Product 1" />
-            UPBEAT-University of the Philippines-UP Baguio Shirt 2016
-            <br />
-            <b>₱499.00</b>
-          </a>
-        </td>
-        <td>
-          <a href="product.php"><img src="images/UPBEAT-University of the Philippines-UP Iloilo Shirt 2016.jpg" alt="Product 2" />
-            UPBEAT-University of the Philippines-UP Iloilo Shirt 2016
-            <br />
-            <b>₱499.00</b>
-          </a>
-        </td>
-        <td>
-          <a href="product.php"><img src="images/UPBEAT-University of the Philippines-UP Open University Shirt.jpg" alt="Product 3" />
-            UPBEAT-University of the Philippines-UP Open University Shirt
-            <br />
-            <b>₱499.00</b>
-          </a>
-        </td>
-        <td>
-          <a href="product.php"><img src="images/UPBEAT-University of the Philippines-UP shirt 2021 BLACK.jpg" alt="Product 4" />
-            UPBEAT-University of the Philippines-UP shirt 2021 BLACK
-            <br />
-            <b>₱499.00</b>
-          </a>
-        </td>
-        <td>
-          <a href="product.php"><img src="images/UPBEAT-University of the Philippines-UP shirt 2022 BLACK.jpg" alt="Product 5" />
-            UPBEAT-University of the Philippines-UP shirt 2022 BLACK
-            <br />
-            <b>₱499.00</b>
-          </a>
-        </td>
-        <td>
-          <a href="product.php"><img src="images/UPBEAT-University of the Philippines-UP Visayas Shirt 2017.jpg" alt="Product 6" />
-            UPBEAT-University of the Philippines-UP Visayas Shirt 2017
-            <br />
-            <b>₱499.00</b>
-          </a>
-        </td>
-      </tr>
+      <?php
+      $sql = "SELECT * FROM product";
+      $result = mysqli_query($conn, $sql);
+      $count = 0;
+      while ($row = mysqli_fetch_assoc($result) and $count < 12) {
+        if ($count % 6 == 0) {
+          echo "<tr>";
+        }
+        echo "<td>";
+        echo "<a href='product.php?product_id=" . $row['product_id'] . "'>";
+        echo "<img src='" . $row['image'] . "' />";
+        echo $row['name'];
+        echo "<br />";
+        echo "<b>₱" . $row['price'] . "</b>";
+        echo "</a>";
+        echo "</td>";
+        if ($count % 6 == 5) {
+          echo "</tr>";
+        }
+        $count++;
+      }
+      ?>
     </table>
   </div>
   <footer>Made with love and PHP. IsKommerce © 2023.</footer>
