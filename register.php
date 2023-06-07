@@ -13,6 +13,37 @@ session_start();
   <link rel="shortcut icon" href="images/LOGO.png" type="image/x-icon" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <script>
+    function register() {
+      var username = document.forms["register"]["username"].value;
+      var password = document.forms["register"]["password"].value;
+      var confirmPassword = document.forms["register"]["confirmPassword"].value;
+      if (username == "") {
+        alert("Please fill out the username.");
+        return false;
+      } else if (username.length > 50) {
+        alert("Username must be less than 50 characters.");
+        return false;
+      } else if (password == "") {
+        alert("Please fill out the password.");
+        return false;
+      } else if (password.length > 50) {
+        alert("Username must be less than 50 characters.");
+        return false;
+      } else if (confirmPassword == "") {
+        alert("Please fill out the confirm password.");
+        return false;
+      } else if (confirmPassword.length > 50) {
+        alert("Username must be less than 50 characters.");
+        return false;
+      } else if (password != confirmPassword) {
+        alert("Password and confirm password do not match.");
+        return false;
+      } else {
+        return true;
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -21,18 +52,43 @@ session_start();
     <h1><a href="index.html">IsKommerce</a></h1>
   </header>
   <div id="container">
-    <form id="register" action="login.html" method="post">
+    <form id="register" method="post">
       <h2>Sign up to IsKommerce</h2>
-      <input type="text" name="username" placeholder="Username" required />
+      <input type="text" name="username" placeholder="Username" />
       <br />
-      <input type="password" name="password" placeholder="Password" required />
+      <input type="password" name="password" placeholder="Password" />
       <br />
-      <input type="password" name="password" placeholder="Confirm password" required />
+      <input type="password" name="confirmPassword" placeholder="Confirm password" />
       <br />
-      <input type="submit" value="Sign up" />
+      <input type="submit" name="register" value="Sign up" onclick="return register()" />
       <p>Already have an account? <a href="login.html">Log in</a></p>
     </form>
   </div>
+  <?php
+  if (isset($_POST['register'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirmPassword'];
+    $conn = mysqli_connect("localhost", "root", "", "iskommerce");
+    if (!$conn) {
+      die("Connection failed: " . mysqli_connect_error());
+    }
+    $sql = "SELECT * FROM user WHERE username = '$username'";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {
+      echo "<script>alert('Username already exists.')</script>";
+    } else {
+      $sql = "INSERT INTO user (username, password) VALUES ('$username', '$password')";
+      if (mysqli_query($conn, $sql)) {
+        echo "<script>alert('Account created successfully.')</script>";
+        header("Location: login.php");
+      } else {
+        echo "<script>alert('Error: " . mysqli_error($conn) . "')</script>";
+      }
+    }
+    mysqli_close($conn);
+  }
+  ?>
   <footer>Made with love. IsKommerce © 2023.</footer>
 </body>
 
