@@ -24,8 +24,8 @@ if (isset($_POST['register'])) {
       echo "<script>alert('Error: " . mysqli_error($conn) . "')</script>";
     }
   }
-  mysqli_close($conn);
 }
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +72,7 @@ if (isset($_POST['register'])) {
 <body>
   <header>
     <img id="logo" src="images/LOGO.png" alt="IsKommerce" />
-    <h1><a href="index.html">IsKommerce</a></h1>
+    <h1><a href="index.php">IsKommerce</a></h1>
   </header>
   <div id="container">
     <form id="register" method="post">
