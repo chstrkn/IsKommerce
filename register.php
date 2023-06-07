@@ -15,6 +15,12 @@ if (isset($_POST['register'])) {
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
     echo "<script>alert('Username already exists.')</script>";
+  } else if (strlen($username) > 50) {
+    echo "<script>alert('Username must be less than 50 characters.')</script>";
+  } else if (strlen($password) > 50) {
+    echo "<script>alert('Password must be less than 50 characters.')</script>";
+  } else if ($password != $confirmPassword) {
+    echo "<script>alert('Password and confirm password do not match.')</script>";
   } else {
     $sql = "INSERT INTO user (username, password) VALUES ('$username', '$password')";
     if (mysqli_query($conn, $sql)) {
@@ -39,34 +45,6 @@ mysqli_close($conn);
   <link rel="shortcut icon" href="images/LOGO.png" type="image/x-icon" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <script>
-    function register() {
-      var username = document.forms["register"]["username"].value;
-      var password = document.forms["register"]["password"].value;
-      var confirmPassword = document.forms["register"]["confirmPassword"].value;
-      if (username == "") {
-        alert("Please fill out the username.");
-        return false;
-      } else if (username.length > 50) {
-        alert("Username must be less than 50 characters.");
-        return false;
-      } else if (password == "") {
-        alert("Please fill out the password.");
-        return false;
-      } else if (password.length > 50) {
-        alert("Password must be less than 50 characters.");
-        return false;
-      } else if (confirmPassword == "") {
-        alert("Please fill out the confirm password.");
-        return false;
-      } else if (password != confirmPassword) {
-        alert("Password and confirm password do not match.");
-        return false;
-      } else {
-        return true;
-      }
-    }
-  </script>
 </head>
 
 <body>
@@ -77,13 +55,13 @@ mysqli_close($conn);
   <div id="container">
     <form id="register" method="post">
       <h2>Sign up to IsKommerce</h2>
-      <input type="text" name="username" placeholder="Username" />
+      <input type="text" name="username" placeholder="Username" required />
       <br />
-      <input type="password" name="password" placeholder="Password" />
+      <input type="password" name="password" placeholder="Password" required />
       <br />
-      <input type="password" name="confirmPassword" placeholder="Confirm password" />
+      <input type="password" name="confirmPassword" placeholder="Confirm password" required />
       <br />
-      <input type="submit" name="register" value="Sign up" onclick="return register()" />
+      <input type="submit" name="register" value="Sign up" />
       <p>Already have an account? <a href="login.php">Log in</a></p>
     </form>
   </div>
