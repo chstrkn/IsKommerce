@@ -1,5 +1,12 @@
 <?php
 session_start();
+$conn = mysqli_connect("localhost", "root", "", "iskommerce");
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+if (!isset($_SESSION['username'])) {
+  header("Location: register.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,26 +25,37 @@ session_start();
 <body>
   <header>
     <img id="logo" src="images/LOGO.png" alt="IsKommerce" />
-    <h1><a href="index.html">IsKommerce</a></h1>
+    <h1><a href="index.php">IsKommerce</a></h1>
   </header>
   <div id="successful-transaction">
     <img src="images/check_circle_white_48dp.svg" alt="Check" />
     <p id="message">You have successfully placed your order!</p>
     <hr />
-    <p>Payment Amount: ₱0.00</p>
+    <?php
+    if (isset($_POST['address'])) {
+      $address = $_POST['address'];
+      $payment_method = $_POST['payment-method'];
+      $total = $_POST['total'];
+      $sql = "INSERT INTO order_details (user_id, delivery_address, payment_method, total) VALUES ((SELECT user_id FROM user WHERE username = '" . $_SESSION['username'] . "'), '$address', '$payment_method', $total)";
+      mysqli_query($conn, $sql);
+      $sql = "SELECT order_id FROM order_details WHERE user_id = (SELECT user_id FROM user WHERE username = '" . $_SESSION['username'] . "') ORDER BY order_id DESC LIMIT 1";
+      $order_id = mysqli_query($conn, $sql);
+      $order_id = mysqli_fetch_assoc($order_id)['order_id'];
+      $sql = "DELETE FROM cart_item WHERE user_id = (SELECT user_id FROM user WHERE username = '" . $_SESSION['username'] . "')";
+      mysqli_query($conn, $sql);
+    }
+    ?>
+    <p>Order ID: <?php echo $order_id; ?></p>
     <hr />
-    <p>Payment Method: Cash on Delivery</p>
+    <p>Order Total: ₱<?php echo $total; ?></p>
     <hr />
-    <p>Delivery Address: UP Visayas, Miagao, Iloilo</p>
+    <p>Payment Method: <?php echo $payment_method; ?></p>
     <hr />
-    <p>Transaction ID: 1234567890</p>
-    <hr />
-    <p>Order Details</p>
-    <p>UPBEAT-University of the Philippines-UP Baguio Shirt 2016 (1 pc)</p>
+    <p>Delivery Address: <?php echo $address; ?></p>
     <br />
-    <button type="button" onclick="location.href='index.html'">Home</button>
+    <button type="button" onclick="location.href='index.php'">Home</button>
   </div>
-  <footer>Made with love. IsKommerce © 2023.</footer>
+  <footer>Made with love and PHP. IsKommerce © 2023.</footer>
 </body>
 
 </html>

@@ -54,14 +54,21 @@ if (!isset($_SESSION['username'])) {
       <br />
       <table>
         <?php
+        // Go to index.php if cart is empty
+        $sql = "SELECT * FROM cart_item WHERE user_id = (SELECT user_id FROM user WHERE username = '" . $_SESSION['username'] . "')";
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) == 0) {
+          header("Location: index.php");
+        }
         $sql = "SELECT * FROM cart_item INNER JOIN product ON cart_item.product_id = product.product_id WHERE user_id = (SELECT user_id FROM user WHERE username = '" . $_SESSION['username'] . "')";
         $result = mysqli_query($conn, $sql);
         $total = 0;
+        $count = 0;
         while ($row = mysqli_fetch_assoc($result)) {
           $total += $row['total'];
           echo "<tr>";
           echo "<td class='cart-selector'>";
-          echo "<input type='checkbox' name='' id=''>";
+          echo "<input type='checkbox' name='cart-item[]' value='" . $row['cart_item_id'] . "'></input>";
           echo "</td>";
           echo "<td class='cart-product'>";
           echo "<img src='" . $row['image'] . "' alt='Product' />";

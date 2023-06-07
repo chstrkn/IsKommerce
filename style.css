@@ -302,7 +302,7 @@ header nav a {
   padding-left: 890px;
 }
 #cart .cart-checkout input {
-  margin-left: 50px;
+  margin-left: 60px;
 }
 #checkout {
   min-height: 740px;
@@ -364,7 +364,7 @@ header nav a {
   border: none;
   padding-left: 930px;
 }
-#checkout .checkout-checkout button {
+#checkout .checkout-checkout input {
   margin-left: 50px;
 }
 #successful-transaction {
