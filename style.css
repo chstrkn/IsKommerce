@@ -368,7 +368,7 @@ header nav a {
   margin-left: 50px;
 }
 #successful-transaction {
-  min-height: 600px;
+  min-height: 550px;
   max-width: 420px;
   margin: 90px auto;
   background-color: #0a4424;

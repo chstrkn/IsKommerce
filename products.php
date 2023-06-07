@@ -42,6 +42,12 @@ if (!isset($_SESSION['username'])) {
   <div id="products">
     <h2>Products</h2>
     <table>
+      <th style="visibility: hidden"></th>
+      <th style="visibility: hidden"></th>
+      <th style="visibility: hidden"></th>
+      <th style="visibility: hidden"></th>
+      <th style="visibility: hidden"></th>
+      <th style="visibility: hidden"></th>
       <?php
       if (isset($_GET['category_id'])) {
         $category_id = $_GET['category_id'];
@@ -65,8 +71,8 @@ if (!isset($_SESSION['username'])) {
           }
           $count++;
         }
-        while ($count < 6) {
-          echo "<td style='visibility: hidden; height: 310px'></td>";
+        if ($count < 6) {
+          echo "<tr style='visibility: hidden; height: 310px'></tr>";
           $count++;
         }
       } elseif (isset($_GET['search'])) {
@@ -91,8 +97,8 @@ if (!isset($_SESSION['username'])) {
           }
           $count++;
         }
-        while ($count < 6) {
-          echo "<td style='visibility: hidden; height: 310px'></td>";
+        if ($count < 6) {
+          echo "<tr style='visibility: hidden; height: 310px'></tr>";
           $count++;
         }
       } else {
