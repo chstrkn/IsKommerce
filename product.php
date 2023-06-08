@@ -7,7 +7,12 @@ if (!$conn) {
 if (!isset($_SESSION['username'])) {
   header("Location: register.php");
 }
+
+// non-existing product
 $product_id = $_GET['product_id'];
+if ($product_id > 25 || $product_id < 1){
+  header('Location: index.php');
+}
 $sql = "SELECT * FROM product WHERE product_id = $product_id";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
