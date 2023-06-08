@@ -60,6 +60,10 @@ if (!isset($_SESSION['username'])) {
     <p>Payment Method: <?php echo $payment_method; ?></p>
     <hr />
     <p>Delivery Address: <?php echo $address; ?></p>
+    <hr />
+    <p>For updates, please contact 09876298700.</p>
+    
+
     <br />
     <button type="button" onclick="location.href='index.php'">Home</button>
   </div>
